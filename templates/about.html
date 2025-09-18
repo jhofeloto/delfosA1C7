@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+
+{% block title %}Acerca de - Delfos A1 C7{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="fw-bold">
+                <i class="fas fa-info-circle text-primary"></i>
+                Acerca del Proyecto Delfos A1 C7
+            </h1>
+            <p class="lead text-muted">
+                Sistema inteligente para predicción de glucosa y clasificación de diabetes
+            </p>
+        </div>
+    </div>
+
+    <!-- Descripción del Proyecto -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-project-diagram"></i>
+                        Descripción del Proyecto
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="lead">
+                        Delfos A1 C7 es un sistema avanzado que utiliza algoritmos de Machine Learning y Deep Learning 
+                        para predecir los niveles de glucosa en ayunas y clasificar el estado de diabetes de los pacientes.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-bullseye text-primary"></i> Objetivos</h5>
+                            <ul>
+                                <li>Predecir niveles de glucosa en ayunas (mg/dL)</li>
+                                <li>Clasificar estado de diabetes: Normal, Prediabetes, Diabetes</li>
+                                <li>Proporcionar herramientas de screening temprano</li>
+                                <li>Apoyar la toma de decisiones clínicas</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-database text-info"></i> Dataset</h5>
+                            <ul>
+                                <li><strong>Tamaño:</strong> 100 registros</li>
+                                <li><strong>Características:</strong> 43 variables clínicas</li>
+                                <li><strong>Variables objetivo:</strong> Glucosa (numérica) y Clase_DM (categórica)</li>
+                                <li><strong>División:</strong> 70% entrenamiento, 15% validación, 15% prueba</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tecnologías Utilizadas -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-cogs"></i>
+                        Tecnologías y Herramientas
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <h6><i class="fas fa-code text-primary"></i> Lenguajes y Frameworks</h6>
+                            <span class="badge bg-primary me-2 mb-1">Python 3.9+</span>
+                            <span class="badge bg-info me-2 mb-1">Flask</span>
+                            <span class="badge bg-secondary me-2 mb-1">JavaScript</span>
+                            <span class="badge bg-warning me-2 mb-1">HTML5/CSS3</span>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <h6><i class="fas fa-brain text-success"></i> Machine Learning</h6>
+                            <span class="badge bg-success me-2 mb-1">Scikit-learn</span>
+                            <span class="badge bg-dark me-2 mb-1">TensorFlow</span>
+                            <span class="badge bg-secondary me-2 mb-1">Pandas</span>
+                            <span class="badge bg-info me-2 mb-1">NumPy</span>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <h6><i class="fas fa-chart-line text-warning"></i> Visualización</h6>
+                            <span class="badge bg-warning me-2 mb-1">Matplotlib</span>
+                            <span class="badge bg-info me-2 mb-1">Seaborn</span>
+                            <span class="badge bg-primary me-2 mb-1">Plotly</span>
+                            <span class="badge bg-success me-2 mb-1">Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modelos Implementados -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-robot"></i>
+                        Modelos Implementados
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-calculator text-primary"></i> Modelos de Regresión</h5>
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <strong>Linear Regression</strong>
+                                    <p class="mb-1">Modelo lineal simple para predicciones básicas</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <strong>Ridge Regression</strong>
+                                    <p class="mb-1">Regresión lineal con regularización L2</p>
+                                </div>
+                                <div class="list-group-item list-group-item-success">
+                                    <strong>Random Forest Regressor</strong> <span class="badge bg-success">Mejor</span>
+                                    <p class="mb-1">Ensemble de árboles de decisión - R² = -0.0437</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <strong>Gradient Boosting Regressor</strong>
+                                    <p class="mb-1">Gradient Boosting Trees para regresión</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5><i class="fas fa-tags text-success"></i> Modelos de Clasificación</h5>
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <strong>Logistic Regression</strong>
+                                    <p class="mb-1">Regresión logística multinomial</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <strong>Random Forest Classifier</strong>
+                                    <p class="mb-1">Ensemble de árboles para clasificación</p>
+                                </div>
+                                <div class="list-group-item">
+                                    <strong>SVM Classifier</strong>
+                                    <p class="mb-1">Máquinas de soporte vectorial</p>
+                                </div>
+                                <div class="list-group-item list-group-item-success">
+                                    <strong>Gradient Boosting Classifier</strong> <span class="badge bg-success">Mejor</span>
+                                    <p class="mb-1">Gradient Boosting - Accuracy = 86.7%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Características del Sistema -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="fas fa-star"></i>
+                        Características del Sistema
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-magic"></i>
+                                </div>
+                                <h6>Predicciones en Tiempo Real</h6>
+                                <p class="text-muted">Resultados instantáneos a partir de datos clínicos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h6>Visualizaciones Interactivas</h6>
+                                <p class="text-muted">Gráficos dinámicos con Plotly y análisis detallado</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h6>Validación Rigurosa</h6>
+                                <p class="text-muted">Métricas estándar y evaluación exhaustiva</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <h6>Pipeline de Reentrenamiento</h6>
+                                <p class="text-muted">Capacidad de actualización con nuevos datos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <h6>Interfaz Responsiva</h6>
+                                <p class="text-muted">Acceso desde cualquier dispositivo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <div class="text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h6>Interpretación Médica</h6>
+                                <p class="text-muted">Explicaciones claras de los resultados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metodología -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-microscope"></i>
+                        Metodología de Desarrollo
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>1. <i class="fas fa-database text-primary"></i> Preprocesamiento</h5>
+                            <ul>
+                                <li>Limpieza y manejo de valores faltantes</li>
+                                <li>Codificación de variables categóricas</li>
+                                <li>Normalización con StandardScaler</li>
+                                <li>División estratificada del dataset</li>
+                            </ul>
+                            
+                            <h5>2. <i class="fas fa-cog text-info"></i> Entrenamiento</h5>
+                            <ul>
+                                <li>Múltiples algoritmos de ML/DL</li>
+                                <li>Optimización de hiperparámetros</li>
+                                <li>Validación con conjunto independiente</li>
+                                <li>Evaluación exhaustiva con métricas estándar</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5>3. <i class="fas fa-chart-bar text-success"></i> Evaluación</h5>
+                            <ul>
+                                <li>Métricas de regresión: MSE, MAE, R²</li>
+                                <li>Métricas de clasificación: Accuracy, Precision, Recall, F1</li>
+                                <li>Matrices de confusión y análisis de errores</li>
+                                <li>Comparación sistemática de modelos</li>
+                            </ul>
+                            
+                            <h5>4. <i class="fas fa-rocket text-warning"></i> Despliegue</h5>
+                            <ul>
+                                <li>Aplicación web con Flask</li>
+                                <li>API RESTful para predicciones</li>
+                                <li>Interfaz intuitiva y responsiva</li>
+                                <li>Visualizaciones interactivas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limitaciones y Consideraciones -->
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Limitaciones Actuales
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Dataset pequeño:</strong> 100 registros limitan la generalización</li>
+                        <li><strong>Desbalanceo de clases:</strong> Solo 4% de casos de diabetes</li>
+                        <li><strong>R² negativo:</strong> Regresión con rendimiento limitado</li>
+                        <li><strong>Validación limitada:</strong> Requiere validación clínica externa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb"></i>
+                        Mejoras Futuras
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Ampliar dataset:</strong> >1000 registros para mejor generalización</li>
+                        <li><strong>Feature engineering:</strong> Nuevas características derivadas</li>
+                        <li><strong>Validación cruzada:</strong> K-fold CV para robustez</li>
+                        <li><strong>Explicabilidad:</strong> SHAP values para interpretación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Descargo de Responsabilidad -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-danger">
+                <h5><i class="fas fa-shield-alt"></i> Descargo de Responsabilidad Médica</h5>
+                <p class="mb-0">
+                    <strong>Este sistema es una herramienta de apoyo educativo y de investigación. 
+                    Las predicciones generadas NO constituyen diagnóstico médico y no deben ser utilizadas 
+                    como sustituto del criterio clínico profesional. Siempre consulte con un médico 
+                    calificado para diagnósticos definitivos y decisiones de tratamiento.</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

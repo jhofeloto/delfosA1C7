@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+
+{% block title %}Visualizaciones - Delfos A1 C7{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="fw-bold">
+                <i class="fas fa-chart-line text-primary"></i>
+                Visualizaciones de Resultados
+            </h1>
+            <p class="lead text-muted">
+                Gráficos interactivos de comparación de modelos y análisis de rendimiento
+            </p>
+        </div>
+    </div>
+
+    <!-- Gráficos Interactivos -->
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar"></i>
+                        Comparación MSE - Modelos de Regresión
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="regressionChart" style="height: 400px;">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando gráfico...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-chart-bar"></i>
+                        Comparación Accuracy - Modelos de Clasificación
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="classificationChart" style="height: 400px;">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="spinner-border text-success" role="status">
+                                <span class="visually-hidden">Cargando gráfico...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Imágenes Estáticas -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-images"></i>
+                        Visualizaciones Generadas
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Distribución de Glucosa</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <img src="{{ url_for('static', filename='../glucosa_distribution.png') }}" 
+                                         class="img-fluid" alt="Distribución de Glucosa"
+                                         onerror="this.parentElement.innerHTML='<div class=&quot;alert alert-warning&quot;>Imagen no disponible: glucosa_distribution.png</div>'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Matriz de Confusión - Mejor Clasificador</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <img src="{{ url_for('static', filename='../results/best_clf_confusion_matrix.png') }}" 
+                                         class="img-fluid" alt="Matriz de Confusión"
+                                         onerror="this.parentElement.innerHTML='<div class=&quot;alert alert-warning&quot;>Imagen no disponible: best_clf_confusion_matrix.png</div>'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Comparación MSE - Regresión</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <img src="{{ url_for('static', filename='../results/regression_mse_comparison.png') }}" 
+                                         class="img-fluid" alt="Comparación MSE"
+                                         onerror="this.parentElement.innerHTML='<div class=&quot;alert alert-warning&quot;>Imagen no disponible: regression_mse_comparison.png</div>'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Comparación Accuracy - Clasificación</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <img src="{{ url_for('static', filename='../results/classification_accuracy_comparison.png') }}" 
+                                         class="img-fluid" alt="Comparación Accuracy"
+                                         onerror="this.parentElement.innerHTML='<div class=&quot;alert alert-warning&quot;>Imagen no disponible: classification_accuracy_comparison.png</div>'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Análisis de Características -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="fas fa-microscope"></i>
+                        Análisis de Características Principales
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-user"></i> Demográficas</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-circle text-primary" style="font-size: 0.5rem;"></i> Edad</li>
+                                <li><i class="fas fa-circle text-primary" style="font-size: 0.5rem;"></i> Sexo</li>
+                                <li><i class="fas fa-circle text-primary" style="font-size: 0.5rem;"></i> Ocupación</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-heartbeat"></i> Clínicas</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i> IMC</li>
+                                <li><i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i> Presión Arterial</li>
+                                <li><i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i> Perímetro Abdominal</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-running"></i> Estilo de Vida</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-circle text-warning" style="font-size: 0.5rem;"></i> Ejercicio</li>
+                                <li><i class="fas fa-circle text-warning" style="font-size: 0.5rem;"></i> Consumo de Frutas</li>
+                                <li><i class="fas fa-circle text-warning" style="font-size: 0.5rem;"></i> Tabaquismo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interpretación de Gráficos -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-lightbulb"></i>
+                        Interpretación de Visualizaciones
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="accordion" id="interpretationAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseRegression">
+                                    <i class="fas fa-chart-line me-2"></i>
+                                    Modelos de Regresión (MSE)
+                                </button>
+                            </h2>
+                            <div id="collapseRegression" class="accordion-collapse collapse show" 
+                                 data-bs-parent="#interpretationAccordion">
+                                <div class="accordion-body">
+                                    <p><strong>Mean Squared Error (MSE):</strong> Mide la diferencia cuadrática media entre valores predichos y reales.</p>
+                                    <ul>
+                                        <li><strong>Valores más bajos son mejores</strong> - indican predicciones más precisas</li>
+                                        <li><strong>Random Forest</strong> muestra el mejor rendimiento con MSE más bajo</li>
+                                        <li><strong>R² negativos</strong> indican que los modelos no superan una predicción simple de la media</li>
+                                        <li><strong>Limitación del dataset:</strong> El tamaño pequeño (100 registros) afecta la capacidad predictiva</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseClassification">
+                                    <i class="fas fa-bullseye me-2"></i>
+                                    Modelos de Clasificación (Accuracy)
+                                </button>
+                            </h2>
+                            <div id="collapseClassification" class="accordion-collapse collapse" 
+                                 data-bs-parent="#interpretationAccordion">
+                                <div class="accordion-body">
+                                    <p><strong>Accuracy:</strong> Porcentaje de predicciones correctas sobre el total de predicciones.</p>
+                                    <ul>
+                                        <li><strong>Gradient Boosting</strong> logra el mejor rendimiento con 86.7% de accuracy</li>
+                                        <li><strong>Rendimiento consistente</strong> entre la mayoría de modelos (~80%)</li>
+                                        <li><strong>Clasificación más robusta</strong> que regresión para este dataset</li>
+                                        <li><strong>Útil para screening</strong> y detección temprana de riesgo de diabetes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseConfusion">
+                                    <i class="fas fa-table me-2"></i>
+                                    Matriz de Confusión
+                                </button>
+                            </h2>
+                            <div id="collapseConfusion" class="accordion-collapse collapse" 
+                                 data-bs-parent="#interpretationAccordion">
+                                <div class="accordion-body">
+                                    <p><strong>Matriz de Confusión:</strong> Muestra la distribución de predicciones correctas e incorrectas por clase.</p>
+                                    <ul>
+                                        <li><strong>Diagonal principal:</strong> Predicciones correctas</li>
+                                        <li><strong>Elementos fuera de diagonal:</strong> Errores de clasificación</li>
+                                        <li><strong>Clase mayoritaria (Normal):</strong> Mejor predicción debido a más ejemplos</li>
+                                        <li><strong>Clase minoritaria (Diabetes):</strong> Más difícil de predecir por pocos ejemplos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapseDistribution">
+                                    <i class="fas fa-chart-area me-2"></i>
+                                    Distribución de Glucosa
+                                </button>
+                            </h2>
+                            <div id="collapseDistribution" class="accordion-collapse collapse" 
+                                 data-bs-parent="#interpretationAccordion">
+                                <div class="accordion-body">
+                                    <p><strong>Histograma de Glucosa:</strong> Muestra la distribución de los niveles de glucosa en el dataset.</p>
+                                    <ul>
+                                        <li><strong>Mayoría en rango normal:</strong> 70-100 mg/dL</li>
+                                        <li><strong>Algunos casos de prediabetes:</strong> 100-126 mg/dL</li>
+                                        <li><strong>Pocos casos de diabetes:</strong> >126 mg/dL (solo 4%)</li>
+                                        <li><strong>Posibles outliers:</strong> Valores extremos que pueden afectar el entrenamiento</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Cargar gráfico de regresión
+async function loadRegressionChart() {
+    try {
+        const response = await fetch('/api/generate_chart/regression_mse');
+        const chartData = await response.json();
+        
+        if (chartData.error) {
+            document.getElementById('regressionChart').innerHTML = 
+                '<div class="alert alert-warning">Error al cargar el gráfico: ' + chartData.error + '</div>';
+            return;
+        }
+        
+        Plotly.newPlot('regressionChart', chartData.data, chartData.layout, {
+            responsive: true,
+            displayModeBar: false
+        });
+    } catch (error) {
+        document.getElementById('regressionChart').innerHTML = 
+            '<div class="alert alert-danger">Error de conexión: ' + error.message + '</div>';
+    }
+}
+
+// Cargar gráfico de clasificación
+async function loadClassificationChart() {
+    try {
+        const response = await fetch('/api/generate_chart/classification_accuracy');
+        const chartData = await response.json();
+        
+        if (chartData.error) {
+            document.getElementById('classificationChart').innerHTML = 
+                '<div class="alert alert-warning">Error al cargar el gráfico: ' + chartData.error + '</div>';
+            return;
+        }
+        
+        Plotly.newPlot('classificationChart', chartData.data, chartData.layout, {
+            responsive: true,
+            displayModeBar: false
+        });
+    } catch (error) {
+        document.getElementById('classificationChart').innerHTML = 
+            '<div class="alert alert-danger">Error de conexión: ' + error.message + '</div>';
+    }
+}
+
+// Cargar gráficos cuando la página esté lista
+document.addEventListener('DOMContentLoaded', function() {
+    loadRegressionChart();
+    loadClassificationChart();
+});
+
+// Redimensionar gráficos cuando cambie el tamaño de ventana
+window.addEventListener('resize', function() {
+    Plotly.Plots.resize('regressionChart');
+    Plotly.Plots.resize('classificationChart');
+});
+</script>
+{% endblock %}

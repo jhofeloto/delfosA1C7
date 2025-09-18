@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+
+{% block title %}Resultados de Modelos - Delfos A1 C7{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="fw-bold">
+                <i class="fas fa-chart-bar text-primary"></i>
+                Resultados y Métricas de Modelos
+            </h1>
+            <p class="lead text-muted">
+                Análisis detallado del rendimiento de los modelos de Machine Learning desarrollados
+            </p>
+        </div>
+    </div>
+
+    {% if model_comparison %}
+    <!-- Mejores Modelos -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-trophy"></i> Mejores Modelos Seleccionados
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% if model_comparison.best_models %}
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-calculator text-info"></i>
+                                        Mejor Modelo de Regresión
+                                    </h5>
+                                    <h3 class="text-primary">{{ model_comparison.best_models.regression }}</h3>
+                                    {% if model_comparison.regression and model_comparison.regression.R2 %}
+                                    <p class="mb-0">
+                                        R² = {{ "%.4f"|format(model_comparison.regression.R2[model_comparison.best_models.regression]) }}
+                                    </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-tags text-success"></i>
+                                        Mejor Modelo de Clasificación
+                                    </h5>
+                                    <h3 class="text-primary">{{ model_comparison.best_models.classification }}</h3>
+                                    {% if model_comparison.classification and model_comparison.classification.Accuracy %}
+                                    <p class="mb-0">
+                                        Accuracy = {{ "%.1f"|format(model_comparison.classification.Accuracy[model_comparison.best_models.classification] * 100) }}%
+                                    </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Métricas de Regresión -->
+    {% if model_comparison.regression %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-chart-line"></i> Métricas de Modelos de Regresión
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Modelo</th>
+                                    <th>MSE</th>
+                                    <th>MAE</th>
+                                    <th>R²</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for model in model_comparison.regression.MSE.keys() %}
+                                <tr {% if model == model_comparison.best_models.regression %}class="table-success"{% endif %}>
+                                    <td>
+                                        {% if model == model_comparison.best_models.regression %}
+                                        <i class="fas fa-crown text-warning"></i>
+                                        {% endif %}
+                                        {{ model }}
+                                    </td>
+                                    <td>{{ "%.2f"|format(model_comparison.regression.MSE[model]) }}</td>
+                                    <td>{{ "%.2f"|format(model_comparison.regression.MAE[model]) }}</td>
+                                    <td>
+                                        {% set r2_value = model_comparison.regression.R2[model] %}
+                                        <span class="{% if r2_value < 0 %}text-danger{% elif r2_value < 0.5 %}text-warning{% else %}text-success{% endif %}">
+                                            {{ "%.4f"|format(r2_value) }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Nota:</strong> Los valores R² negativos indican que el modelo tiene un rendimiento inferior 
+                        a simplemente predecir la media de los valores. Esto sugiere limitaciones del dataset (tamaño pequeño, 
+                        complejidad inherente o desbalanceo).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Métricas de Clasificación -->
+    {% if model_comparison.classification %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-bullseye"></i> Métricas de Modelos de Clasificación
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Modelo</th>
+                                    <th>Accuracy</th>
+                                    <th>Precision</th>
+                                    <th>Recall</th>
+                                    <th>F1-Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for model in model_comparison.classification.Accuracy.keys() %}
+                                <tr {% if model == model_comparison.best_models.classification %}class="table-success"{% endif %}>
+                                    <td>
+                                        {% if model == model_comparison.best_models.classification %}
+                                        <i class="fas fa-crown text-warning"></i>
+                                        {% endif %}
+                                        {{ model }}
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-primary">
+                                            {{ "%.1f"|format(model_comparison.classification.Accuracy[model] * 100) }}%
+                                        </span>
+                                    </td>
+                                    <td>{{ "%.3f"|format(model_comparison.classification.Precision[model]) }}</td>
+                                    <td>{{ "%.3f"|format(model_comparison.classification.Recall[model]) }}</td>
+                                    <td>{{ "%.3f"|format(model_comparison.classification.F1[model]) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Dataset Information -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-database"></i> Información del Dataset
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <div class="display-6 text-primary">100</div>
+                                <small class="text-muted">Registros Totales</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <div class="display-6 text-info">43</div>
+                                <small class="text-muted">Características</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <div class="display-6 text-success">70/15/15</div>
+                                <small class="text-muted">Split Train/Val/Test</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <div class="display-6 text-warning">8</div>
+                                <small class="text-muted">Modelos Entrenados</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Distribución de Clases -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="fas fa-chart-pie"></i> Distribución de Clases de Diabetes
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h3>59 (59%)</h3>
+                                    <p class="mb-0">Normal</p>
+                                    <small>&lt; 100 mg/dL</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-warning text-dark">
+                                <div class="card-body">
+                                    <h3>37 (37%)</h3>
+                                    <p class="mb-0">Prediabetes</p>
+                                    <small>100-126 mg/dL</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body">
+                                    <h3>4 (4%)</h3>
+                                    <p class="mb-0">Diabetes</p>
+                                    <small>&gt; 126 mg/dL</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-3">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <strong>Desbalanceo de Clases:</strong> 
+                        El dataset presenta un marcado desbalanceo con solo 4 casos de diabetes (4%), 
+                        lo que puede afectar el rendimiento de los modelos en esta clase minoritaria.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limitaciones y Recomendaciones -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i> Limitaciones Identificadas
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-circle text-danger" style="font-size: 0.5rem;"></i>
+                            <strong>Dataset pequeño:</strong> Solo 100 registros limitan la generalización
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-circle text-danger" style="font-size: 0.5rem;"></i>
+                            <strong>Clases desbalanceadas:</strong> Solo 4 casos de diabetes
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-circle text-danger" style="font-size: 0.5rem;"></i>
+                            <strong>R² negativo:</strong> Modelos de regresión con rendimiento limitado
+                        </li>
+                        <li>
+                            <i class="fas fa-circle text-danger" style="font-size: 0.5rem;"></i>
+                            <strong>Posibles outliers:</strong> En mediciones de glucosa
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb"></i> Recomendaciones de Mejora
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i>
+                            <strong>Ampliar dataset:</strong> Recopilar más datos (>1000 registros)
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i>
+                            <strong>Balancear clases:</strong> Obtener más casos de diabetes
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i>
+                            <strong>Feature engineering:</strong> Crear nuevas características derivadas
+                        </li>
+                        <li>
+                            <i class="fas fa-circle text-success" style="font-size: 0.5rem;"></i>
+                            <strong>Validación cruzada:</strong> Implementar k-fold CV para robustez
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+    <!-- No hay datos disponibles -->
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <h4>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Datos de Comparación No Disponibles
+                </h4>
+                <p class="mb-0">
+                    Los resultados de comparación de modelos no están disponibles. 
+                    Asegúrese de que el archivo 'results/model_comparison.json' existe y contiene datos válidos.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
