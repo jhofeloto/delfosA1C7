@@ -1,0 +1,100 @@
+{
+    "regression": {
+        "MSE": {
+            "Linear Regression": 4793.734431543577,
+            "Ridge Regression": 4513.7505590244555,
+            "Random Forest Regressor": 4494.1706726666625,
+            "Gradient Boosting Regressor": 4745.311327690672
+        },
+        "MAE": {
+            "Linear Regression": 38.873930841442615,
+            "Ridge Regression": 37.062499490629975,
+            "Random Forest Regressor": 35.51693333333335,
+            "Gradient Boosting Regressor": 32.77960886147297
+        },
+        "R2": {
+            "Linear Regression": -0.11326408150630818,
+            "Ridge Regression": -0.0482425428441815,
+            "Random Forest Regressor": -0.04369544401895764,
+            "Gradient Boosting Regressor": -0.10201863122025023
+        }
+    },
+    "classification": {
+        "Accuracy": {
+            "Logistic Regression": 0.8,
+            "Random Forest Classifier": 0.8,
+            "SVM Classifier": 0.8,
+            "Gradient Boosting Classifier": 0.8666666666666667
+        },
+        "Precision": {
+            "Logistic Regression": 0.6400000000000001,
+            "Random Forest Classifier": 0.6400000000000001,
+            "SVM Classifier": 0.6400000000000001,
+            "Gradient Boosting Classifier": 0.8857142857142857
+        },
+        "Recall": {
+            "Logistic Regression": 0.8,
+            "Random Forest Classifier": 0.8,
+            "SVM Classifier": 0.8,
+            "Gradient Boosting Classifier": 0.8666666666666667
+        },
+        "F1": {
+            "Logistic Regression": 0.711111111111111,
+            "Random Forest Classifier": 0.711111111111111,
+            "SVM Classifier": 0.711111111111111,
+            "Gradient Boosting Classifier": 0.8384615384615385
+        },
+        "AUC": {
+            "Logistic Regression": null,
+            "Random Forest Classifier": null,
+            "SVM Classifier": null,
+            "Gradient Boosting Classifier": null
+        },
+        "Confusion Matrix": {
+            "Logistic Regression": [
+                [
+                    0,
+                    3
+                ],
+                [
+                    0,
+                    12
+                ]
+            ],
+            "Random Forest Classifier": [
+                [
+                    0,
+                    3
+                ],
+                [
+                    0,
+                    12
+                ]
+            ],
+            "SVM Classifier": [
+                [
+                    0,
+                    3
+                ],
+                [
+                    0,
+                    12
+                ]
+            ],
+            "Gradient Boosting Classifier": [
+                [
+                    1,
+                    2
+                ],
+                [
+                    0,
+                    12
+                ]
+            ]
+        }
+    },
+    "best_models": {
+        "regression": "Random Forest Regressor",
+        "classification": "Gradient Boosting Classifier"
+    }
+}

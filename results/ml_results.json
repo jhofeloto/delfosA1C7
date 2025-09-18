@@ -1,0 +1,183 @@
+{
+    "regression": {
+        "Linear Regression": {
+            "Validation": {
+                "MSE": 589.9747976664005,
+                "MAE": 20.098403115060698,
+                "R2": -6.803238848383209
+            },
+            "Test": {
+                "MSE": 4793.734431543577,
+                "MAE": 38.873930841442615,
+                "R2": -0.11326408150630818
+            }
+        },
+        "Ridge Regression": {
+            "Validation": {
+                "MSE": 503.38694004218104,
+                "MAE": 18.676435534321037,
+                "R2": -5.657993768281268
+            },
+            "Test": {
+                "MSE": 4513.7505590244555,
+                "MAE": 37.062499490629975,
+                "R2": -0.0482425428441815
+            }
+        },
+        "Random Forest Regressor": {
+            "Validation": {
+                "MSE": 469.9251743333345,
+                "MAE": 13.870866666666684,
+                "R2": -5.215415286712955
+            },
+            "Test": {
+                "MSE": 4494.1706726666625,
+                "MAE": 35.51693333333335,
+                "R2": -0.04369544401895764
+            }
+        },
+        "Gradient Boosting Regressor": {
+            "Validation": {
+                "MSE": 282.3963373651383,
+                "MAE": 12.230084383489801,
+                "R2": -2.735085090219058
+            },
+            "Test": {
+                "MSE": 4745.311327690672,
+                "MAE": 32.77960886147297,
+                "R2": -0.10201863122025023
+            }
+        }
+    },
+    "classification": {
+        "Logistic Regression": {
+            "Validation": {
+                "Accuracy": 1.0,
+                "Precision": 1.0,
+                "Recall": 1.0,
+                "F1": 1.0,
+                "AUC": null,
+                "Confusion Matrix": [
+                    [
+                        15
+                    ]
+                ]
+            },
+            "Test": {
+                "Accuracy": 0.8,
+                "Precision": 0.6400000000000001,
+                "Recall": 0.8,
+                "F1": 0.711111111111111,
+                "AUC": null,
+                "Confusion Matrix": [
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        0,
+                        12
+                    ]
+                ]
+            }
+        },
+        "Random Forest Classifier": {
+            "Validation": {
+                "Accuracy": 1.0,
+                "Precision": 1.0,
+                "Recall": 1.0,
+                "F1": 1.0,
+                "AUC": null,
+                "Confusion Matrix": [
+                    [
+                        15
+                    ]
+                ]
+            },
+            "Test": {
+                "Accuracy": 0.8,
+                "Precision": 0.6400000000000001,
+                "Recall": 0.8,
+                "F1": 0.711111111111111,
+                "AUC": null,
+                "Confusion Matrix": [
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        0,
+                        12
+                    ]
+                ]
+            }
+        },
+        "SVM Classifier": {
+            "Validation": {
+                "Accuracy": 1.0,
+                "Precision": 1.0,
+                "Recall": 1.0,
+                "F1": 1.0,
+                "AUC": null,
+                "Confusion Matrix": [
+                    [
+                        15
+                    ]
+                ]
+            },
+            "Test": {
+                "Accuracy": 0.8,
+                "Precision": 0.6400000000000001,
+                "Recall": 0.8,
+                "F1": 0.711111111111111,
+                "AUC": null,
+                "Confusion Matrix": [
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        0,
+                        12
+                    ]
+                ]
+            }
+        },
+        "Gradient Boosting Classifier": {
+            "Validation": {
+                "Accuracy": 0.9333333333333333,
+                "Precision": 1.0,
+                "Recall": 0.9333333333333333,
+                "F1": 0.9655172413793104,
+                "AUC": null,
+                "Confusion Matrix": [
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        1,
+                        14
+                    ]
+                ]
+            },
+            "Test": {
+                "Accuracy": 0.8666666666666667,
+                "Precision": 0.8857142857142857,
+                "Recall": 0.8666666666666667,
+                "F1": 0.8384615384615385,
+                "AUC": null,
+                "Confusion Matrix": [
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        0,
+                        12
+                    ]
+                ]
+            }
+        }
+    }
+}
